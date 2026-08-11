@@ -1,0 +1,55 @@
+table:
+  name: workflow_inbox
+  schema: public
+object_relationships:
+  - name: workflow
+    using:
+      foreign_key_constraint_on: workflow_id
+insert_permissions:
+  - role: user
+    permission:
+      check:
+        workflow:
+          organization:
+            members:
+              _and:
+                - user_id:
+                    _eq: X-Hasura-User-Id
+                - role:
+                    _in:
+                      - owner
+                      - editor
+      set:
+        created_by: X-Hasura-User-Id
+      columns:
+        - workflow_id
+        - payload
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - workflow_id
+        - payload
+        - created_by
+        - created_at
+      filter:
+        workflow:
+          organization:
+            members:
+              user_id:
+                _eq: X-Hasura-User-Id
+event_triggers:
+  - name: workflow_database_event
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      interval_sec: 10
+      num_retries: 3
+      timeout_sec: 60
+    webhook: '{{NHOST_FUNCTIONS_URL}}/database-event-start'
+    headers:
+      - name: x-action-secret
+        value_from_env: ACTION_SECRET

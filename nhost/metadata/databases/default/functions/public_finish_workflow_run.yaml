@@ -1,0 +1,6 @@
+function:
+  name: finish_workflow_run
+  schema: public
+configuration:
+  custom_root_fields: {}
+  exposed_as: mutation

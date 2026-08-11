@@ -1,0 +1,4 @@
+version: 3
+endpoint: http://graphql:8080
+metadata_directory: metadata
+migrations_directory: migrations

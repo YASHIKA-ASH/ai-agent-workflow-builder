@@ -1,0 +1,21 @@
+table:
+  name: run_jobs
+  schema: public
+object_relationships:
+  - name: workflow_run
+    using:
+      foreign_key_constraint_on: workflow_run_id
+event_triggers:
+  - name: execute_workflow_run
+    definition:
+      enable_manual: false
+      insert:
+        columns: '*'
+    retry_conf:
+      interval_sec: 10
+      num_retries: 3
+      timeout_sec: 60
+    webhook: '{{NHOST_FUNCTIONS_URL}}/execute-run'
+    headers:
+      - name: x-action-secret
+        value_from_env: ACTION_SECRET

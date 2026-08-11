@@ -1,0 +1,15 @@
+DROP VIEW IF EXISTS public.org_monthly_usage;
+DROP FUNCTION IF EXISTS public.finish_workflow_run(uuid, text, text);
+DROP FUNCTION IF EXISTS public.reserve_org_quota(uuid);
+DROP FUNCTION IF EXISTS public.set_updated_at() CASCADE;
+DROP TABLE IF EXISTS public.db_write_records CASCADE;
+DROP TABLE IF EXISTS public.workflow_inbox CASCADE;
+DROP TABLE IF EXISTS public.notification_outbox CASCADE;
+DROP TABLE IF EXISTS public.run_jobs CASCADE;
+DROP TABLE IF EXISTS public.step_runs CASCADE;
+DROP TABLE IF EXISTS public.workflow_runs CASCADE;
+DROP TABLE IF EXISTS public.workflow_triggers CASCADE;
+DROP TABLE IF EXISTS public.workflow_steps CASCADE;
+DROP TABLE IF EXISTS public.workflows CASCADE;
+DROP TABLE IF EXISTS public.org_members CASCADE;
+DROP TABLE IF EXISTS public.organizations CASCADE;

@@ -1,0 +1,49 @@
+[functions]
+
+[functions.node]
+version = 22
+
+[auth.redirections]
+clientUrl = 'http://localhost:3000'
+
+[auth.signUp]
+enabled = true
+disableAutoSignup = false
+disableNewUsers = false
+
+[auth.method.emailPassword]
+emailVerificationRequired = false
+passwordMinLength = 9
+
+[hasura]
+adminSecret = '{{ secrets.HASURA_GRAPHQL_ADMIN_SECRET }}'
+webhookSecret = '{{ secrets.HASURA_GRAPHQL_WEBHOOK_SECRET }}'
+
+[[hasura.jwtSecrets]]
+type = 'HS256'
+key = '{{ secrets.HASURA_GRAPHQL_JWT_SECRET }}'
+
+[hasura.settings]
+devMode = true
+enableConsole = true
+enableAllowList = false
+
+[[global.environment]]
+name = 'ACTION_SECRET'
+value = '{{ secrets.ACTION_SECRET }}'
+
+[[global.environment]]
+name = 'GEMINI_MODEL'
+value = 'gemini-3.6-flash'
+
+[[global.environment]]
+name = 'ALLOW_PRIVATE_HTTP'
+value = 'false'
+
+[postgres.resources.storage]
+capacity = 1
+
+[observability]
+
+[observability.grafana]
+adminPassword = '{{ secrets.GRAFANA_ADMIN_PASSWORD }}'

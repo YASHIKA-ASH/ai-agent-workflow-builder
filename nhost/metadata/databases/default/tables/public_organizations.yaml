@@ -1,0 +1,61 @@
+table:
+  name: organizations
+  schema: public
+array_relationships:
+  - name: members
+    using:
+      foreign_key_constraint_on:
+        column: org_id
+        table:
+          name: org_members
+          schema: public
+  - name: workflow_runs
+    using:
+      foreign_key_constraint_on:
+        column: org_id
+        table:
+          name: workflow_runs
+          schema: public
+  - name: workflows
+    using:
+      foreign_key_constraint_on:
+        column: org_id
+        table:
+          name: workflows
+          schema: public
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - id
+        - name
+        - quota_allowed
+        - quota_used
+        - quota_reserved
+        - quota_period_start
+        - created_at
+        - updated_at
+      filter:
+        members:
+          user_id:
+            _eq: X-Hasura-User-Id
+update_permissions:
+  - role: user
+    permission:
+      columns:
+        - name
+        - quota_allowed
+      filter:
+        members:
+          _and:
+            - user_id:
+                _eq: X-Hasura-User-Id
+            - role:
+                _eq: owner
+      check:
+        members:
+          _and:
+            - user_id:
+                _eq: X-Hasura-User-Id
+            - role:
+                _eq: owner

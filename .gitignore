@@ -1,0 +1,15 @@
+node_modules
+.next
+.env
+.env.local
+.nhost
+.DS_Store
+npm-debug.log*
+
+.secrets
+
+.env.local
+.secrets
+.next/
+node_modules/
+functions/node_modules/
