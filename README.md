@@ -3,6 +3,10 @@
 A compact n8n-style workflow engine built for the assignment using **Nhost + PostgreSQL + Hasura GraphQL + Nhost Auth + Nhost Functions + Next.js**.
 
 The implementation prioritizes the assignment's end-to-end proof: multi-tenant isolation, two permission layers, real asynchronous execution, retries, quota enforcement, approval pause/resume, event-driven starts, and live GraphQL subscriptions.
+<img width="1876" height="917" alt="image" src="https://github.com/user-attachments/assets/d830b6df-1361-4b1e-aa16-ce09d3a74c0f" />
+<img width="1883" height="886" alt="image" src="https://github.com/user-attachments/assets/532311d3-ed2f-4bfe-9425-a437b2adfb7d" />
+
+
 
 ## What is implemented
 
